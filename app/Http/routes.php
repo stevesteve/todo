@@ -35,8 +35,16 @@ Route::group(['prefix' => 'api'], function () {
 
 		$task = new Task();
 		$task->name = $request->name;
+		$task->done = 0;
 		$task->save();
 
+		return response()->json($task, 201);
+	});
+
+	Route::put('/tasks/{id}', function ($id, Request $request) {
+		$task = Task::find($id);
+		$task->done = $request->all()['done'];
+		$task->save();
 		return response()->json($task);
 	});
 });

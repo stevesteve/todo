@@ -5,6 +5,7 @@ todoApp.controller('TasksCtrl', [
 'Task',
 function($scope,$rootScope,Task){
 	$scope.newTask = {};
+	$scope.filterTasks = { done: '0' };
 	$scope.creationerrors = [];
 	$scope.tasks = Task.query(function () {
 		console.log($scope.tasks);
@@ -31,12 +32,6 @@ function($scope,$rootScope,Task){
 				}
 			}
 		});
-	};
-
-	$scope.toggleDone = function () {
-		this.task.done = this.task.done===1?0:1;
-		// route not yet implemented
-		// this.task.$save();
 	};
 
 	$rootScope.$watch('activeList', function(newValue, oldValue) {
