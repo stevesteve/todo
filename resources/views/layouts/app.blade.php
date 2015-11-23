@@ -15,6 +15,9 @@
 
 	{{-- App Scripts --}}
 	<script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
+	<script src="{{ asset('js/resource/Task.js') }}" type="text/javascript"></script>
+	<script src="{{ asset('js/controllers/TasksCtrl.js') }}" type="text/javascript"></script>
+	<script src="{{ asset('js/controllers/ListsCtrl.js') }}" type="text/javascript"></script>
 
 </body>
 </html>
