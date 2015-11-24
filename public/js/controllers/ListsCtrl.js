@@ -18,5 +18,9 @@ function($scope,$rootScope,List,errorparser){
 		}, function (error) {
 			$scope.creationerrors = errorparser.getHumanReadable(error);
 		});
-	}
+	};
+
+	$scope.setActiveList = function () {
+		$rootScope.activeList = this.list;
+	};
 }]);

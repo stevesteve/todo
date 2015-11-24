@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Task;
+use App\TodoList;
 
 class TaskController extends Controller
 {
@@ -16,9 +17,14 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tasks = Task::get();
+        if ($request->query('list_id')!==NULL) {
+            $list = TodoList::find($request->query('list_id'));
+            $tasks = $list->tasks;
+        } else {
+            $tasks = Task::get();
+        }
         return response()->json($tasks);
     }
 
@@ -32,10 +38,12 @@ class TaskController extends Controller
     {
         $this->validate($request, [
             'name' => 'required | max:255',
+            'list_id' => 'required|exists:todo_lists,id',
         ]);
 
         $task = new Task();
         $task->name = $request->name;
+        $task->list_id = $request->list_id;
         $task->done = 0;
         $task->save();
 
