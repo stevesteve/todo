@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTasksTable extends Migration
+class CreateListsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,10 @@ class CreateTasksTable extends Migration
      */
     public function up()
     {
-        Schema::create('tasks', function (Blueprint $table) {
+        Schema::create('todo_lists', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('list_id')->unsigned();
             $table->string('name');
-            $table->boolean('done');
             $table->timestamps();
-
-            $table->foreign('list_id')->references('id')->on('todo_lists');
         });
     }
 
@@ -30,6 +26,6 @@ class CreateTasksTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tasks');
+        Schema::drop('todo_lists');
     }
 }

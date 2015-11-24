@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Task;
+use App\TodoList;
 
-class TaskController extends Controller
+class ListController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +18,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::get();
-        return response()->json($tasks);
+        $lists = TodoList::get();
+        return response()->json($lists);
     }
 
     /**
@@ -34,12 +34,11 @@ class TaskController extends Controller
             'name' => 'required | max:255',
         ]);
 
-        $task = new Task();
-        $task->name = $request->name;
-        $task->done = 0;
-        $task->save();
+        $list = new TodoList();
+        $list->name = $request->name;
+        $list->save();
 
-        return response()->json($task, 201);
+        return response()->json($list, 201);
     }
 
     /**
@@ -50,8 +49,7 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        $task = Task::find($id);
-        return response()->json($task);
+        //
     }
 
     /**
@@ -63,10 +61,7 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $task = Task::find($id);
-        $task->done = $request->all()['done'];
-        $task->save();
-        return response()->json($task);
+        //
     }
 
     /**

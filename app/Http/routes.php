@@ -26,4 +26,7 @@ Route::group(['prefix' => 'api'], function () {
 	Route::get('tasks/{id}', 'TaskController@show');
 	Route::put('tasks/{id}', 'TaskController@update');
 
+	Route::get('lists', 'ListController@index');
+	Route::post('lists', 'ListController@store');
+
 });

@@ -3,13 +3,12 @@ todoApp.controller('TasksCtrl', [
 '$scope',
 '$rootScope',
 'Task',
-function($scope,$rootScope,Task){
+'ErrorParser',
+function($scope,$rootScope,Task,errorparser){
 	$scope.newTask = {};
 	$scope.filterTasks = { done: '0' };
 	$scope.creationerrors = [];
-	$scope.tasks = Task.query(function () {
-		console.log($scope.tasks);
-	});
+	$scope.tasks = Task.query();
 
 	$scope.create = function () {
 		var task = new Task($scope.newTask);
@@ -18,19 +17,8 @@ function($scope,$rootScope,Task){
 			$scope.tasks.push(created);
 			$scope.creationerrors = [];
 		}, function (error) {
-			$scope.creationerrors = [];
-			// iterate over the validator messages and add all
-			// messages to $scope.creationerrors
-			for (field in error.data) {
-				if (error.data.hasOwnProperty(field)) {
-					var fieldErrors = error.data[field];
-					console.log(fieldErrors);
-					for (var j = 0; j < fieldErrors.length; j++) {
-						console.log(fieldErrors[j]);
-						$scope.creationerrors.push(fieldErrors[j]);
-					};
-				}
-			}
+			$scope.creationerrors = errorparser.getHumanReadable(error);
+			
 		});
 	};
 
