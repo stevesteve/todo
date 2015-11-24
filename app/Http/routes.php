@@ -11,40 +11,19 @@
 |
 */
 
-use App\Task;
-use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('tasks');
 });
 
 Route::group(['prefix' => 'api'], function () {
-	Route::get('/tasks', function () {
-		$tasks = Task::get();
-		return response()->json($tasks);
+	Route::get('/', function () {
+		return response()->json('hi');
 	});
 
-	Route::post('/tasks', function (Request $request) {
-		$validator = Validator::make($request->all(), [
-			'name' => 'required | max:255',
-		]);
+	Route::get('tasks', 'TaskController@index');
+	Route::post('tasks', 'TaskController@store');
+	Route::get('tasks/{id}', 'TaskController@show');
+	Route::put('tasks/{id}', 'TaskController@update');
 
-		if ($validator->fails()) {
-			return response()->json($validator->messages(),400);
-		}
-
-		$task = new Task();
-		$task->name = $request->name;
-		$task->done = 0;
-		$task->save();
-
-		return response()->json($task, 201);
-	});
-
-	Route::put('/tasks/{id}', function ($id, Request $request) {
-		$task = Task::find($id);
-		$task->done = $request->all()['done'];
-		$task->save();
-		return response()->json($task);
-	});
 });
