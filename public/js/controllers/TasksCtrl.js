@@ -1,4 +1,3 @@
-
 todoApp.controller('TasksCtrl', [
 '$scope',
 '$rootScope',
@@ -18,6 +17,19 @@ function($scope,$rootScope,Task,errorparser){
 			$scope.creationerrors = [];
 		}, function (error) {
 			$scope.creationerrors = errorparser.getHumanReadable(error);
+		});
+	};
+
+	$scope.delete = function ($event) {
+		$event.stopPropagation();
+		var idToRemove = this.task.id;
+		this.task.$remove(function () {
+			for (var i = 0; i < $scope.tasks.length; i++) {
+				if ($scope.tasks[i].id === idToRemove) {
+					$scope.tasks.splice(i,1);
+					break;
+				}
+			};
 		});
 	};
 

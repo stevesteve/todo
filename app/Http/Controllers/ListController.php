@@ -49,19 +49,8 @@ class ListController extends Controller
      */
     public function show($id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        $list = TodoList::find($id);
+        return response()->json($list);
     }
 
     /**
@@ -72,6 +61,8 @@ class ListController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $list = TodoList::find($id);
+        $list->delete();
+        return response('',204);
     }
 }

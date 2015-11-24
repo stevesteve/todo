@@ -25,8 +25,11 @@ Route::group(['prefix' => 'api'], function () {
 	Route::post('tasks', 'TaskController@store');
 	Route::get('tasks/{id}', 'TaskController@show');
 	Route::put('tasks/{id}', 'TaskController@update');
+	Route::delete('tasks/{id}', 'TaskController@destroy');
 
 	Route::get('lists', 'ListController@index');
 	Route::post('lists', 'ListController@store');
+	Route::get('lists/{id}', 'ListController@show');
+	Route::delete('lists/{id}', 'ListController@destroy');
 
 });

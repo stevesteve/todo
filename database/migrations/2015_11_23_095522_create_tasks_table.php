@@ -19,7 +19,7 @@ class CreateTasksTable extends Migration
             $table->boolean('done');
             $table->timestamps();
 
-            $table->foreign('list_id')->references('id')->on('todo_lists');
+            $table->foreign('list_id')->references('id')->on('todo_lists')->onDelete('cascade');
         });
     }
 

@@ -15,6 +15,7 @@
 		<ul>
 			<li ng-repeat="list in lists | orderBy:'name'" ng-click="setActiveList()">
 				@{{ list.name }}
+				<button ng-click="delete($event)">Delete</button>
 			</li>
 		</ul>
 	</div>
@@ -35,6 +36,7 @@
 					ng-false-value="0"
 					ng-change="task.$save()">
 				@{{ task.name }}
+				<button ng-click="delete($event)">Delete</button>
 			</li>
 		</ul>
 		<div ng-if="filteredTasks.length === 0">No Tasks</div>

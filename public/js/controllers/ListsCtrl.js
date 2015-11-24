@@ -20,6 +20,25 @@ function($scope,$rootScope,List,errorparser){
 		});
 	};
 
+	$scope.delete = function ($event) {
+		$event.stopPropagation();
+		if (!confirm('Are you sure?')) {
+			return;
+		}
+		var idToRemove = this.list.id;
+		this.list.$remove(function () {
+			for (var i = 0; i < $scope.lists.length; i++) {
+				if ($scope.lists[i].id === idToRemove) {
+					$scope.lists.splice(i,1);
+					break;
+				}
+			};
+			if ($rootScope.activeList.id === idToRemove) {
+				$rootScope.activeList = null;
+			}
+		});
+	};
+
 	$scope.setActiveList = function () {
 		$rootScope.activeList = this.list;
 	};
