@@ -54,7 +54,7 @@
 		</ul>
 		<div ng-if="filteredTasks.length === 0">No Tasks</div>
 	</div>
-	<div ng-if="!activeList">
+	<div ng-if="!activeList" id="no-list-panel">
 		Select a list
 	</div>
 
