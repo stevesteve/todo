@@ -33,7 +33,7 @@ function($scope,$rootScope,List,errorparser){
 					break;
 				}
 			};
-			if ($rootScope.activeList.id === idToRemove) {
+			if ($rootScope.activeList && $rootScope.activeList.id === idToRemove) {
 				$rootScope.activeList = null;
 			}
 		});

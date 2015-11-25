@@ -47,8 +47,10 @@ function($scope,$rootScope,Task,errorparser){
 	});
 
 	function getListTasks () {
-		$scope.tasks = Task.query({
-			list_id: $rootScope.activeList.id
-		});
+		if ($rootScope.activeList) {
+			$scope.tasks = Task.query({
+				list_id: $rootScope.activeList.id
+			});
+		}
 	}
 }]);
