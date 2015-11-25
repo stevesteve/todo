@@ -195,7 +195,7 @@ input, button {
 button:hover {
   background-color: #757575; }
 
-input[type=checkbox] {
+.checkbox {
   height: 20px;
   width: 20px;
   cursor: pointer; }
@@ -224,7 +224,7 @@ ul {
   .checkbox-label span {
     float: left;
     margin-right: 10px; }
-  .checkbox-label input[type=checkbox] {
+  .checkbox-label .checkbox {
     margin-top: 10px; }
 
 #listspanel {
@@ -277,11 +277,16 @@ ul {
     line-height: 40px;
     background-color: #313131;
     border-radius: 4px;
-    padding-left: 40px; }
-    #taskspanel #tasklist li input[type=checkbox] {
+    padding-left: 40px;
+    white-space: nowrap;
+    overflow: hidden; }
+    #taskspanel #tasklist li .checkbox {
       position: absolute;
       left: 10px;
       top: 10px; }
+    #taskspanel #tasklist li .task-time {
+      margin-left: 20px;
+      color: #757575; }
     #taskspanel #tasklist li .btn-delete {
       position: absolute;
       right: 5px;

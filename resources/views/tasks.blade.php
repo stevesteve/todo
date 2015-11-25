@@ -29,19 +29,26 @@
 				<li ng-repeat="error in creationerrors">@{{ error }}</li>
 			</ul>
 		</form>
-		<label for="show-done" class="checkbox-label">
+		<label for="show-done" class="checkbox-label" ng-click="toggleDoneFilter()">
 			<span>Show Done: </span>
-			<input id="show-done" type="checkbox"
-				ng-model="filterTasks.done" ng-true-value="undefined" ng-false-value="0">
+			<img src="{{ asset('media/checkbox.png') }}"class="checkbox"
+				ng-if="filterTasks.done===0">
+			<img src="{{ asset('media/checkbox-ticked.png') }}" class="checkbox ticked"
+				ng-if="filterTasks.done!==0">
 		</label>
 		<ul id="tasklist">
 			<li ng-repeat="task in filteredTasks = (tasks | filter:filterTasks | orderBy:['!done','id']:true)">
-				<input type="checkbox"
-					ng-model="task.done"
-					ng-true-value="1"
-					ng-false-value="0"
-					ng-change="task.$save()">
+				<img src="{{ asset('media/checkbox.png') }}"class="checkbox"
+					ng-if="task.done!==1" ng-click="toggleDone()">
+				<img src="{{ asset('media/checkbox-ticked.png') }}" class="checkbox ticked"
+					ng-if="task.done===1" ng-click="toggleDone()">
 				@{{ task.name }}
+				<span class="task-time" ng-if="task.done===1">
+					Done: @{{ task.updated_at }}
+				</span>
+				<span class="task-time" ng-if="task.done!==1">
+					Created: @{{ task.created_at }}
+				</span>
 				<button ng-click="delete($event)" class="btn-delete">x</button>
 			</li>
 		</ul>

@@ -16,10 +16,16 @@
 		background-color: #313131;
 		border-radius: 4px;
 		padding-left: 40px;
-		input[type=checkbox] {
+		white-space: nowrap;
+		overflow: hidden;
+		.checkbox {
 			position: absolute;
 			left: 10px;
 			top: 10px;
+		}
+		.task-time {
+			margin-left: 20px;
+			color: #757575;
 		}
 		.btn-delete {
 			position: absolute;

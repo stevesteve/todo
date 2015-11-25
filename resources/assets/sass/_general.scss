@@ -18,12 +18,13 @@ input, button {
 button:hover {
 	background-color: #757575;
 }
-input[type=checkbox] {
+
+.checkbox {
 	height: 20px;
 	width: 20px;
 	cursor: pointer;
 }
-
+		
 ul {
 	list-style: none;
 }
@@ -53,7 +54,7 @@ ul {
 		float: left; // this fixes a issue where the span is moved below the checkbox
 		margin-right: 10px;
 	}
-	input[type=checkbox] {
+	.checkbox {
 		margin-top: 10px;
 	}
 }
