@@ -5,7 +5,7 @@ todoApp.controller('TasksCtrl', [
 'ErrorParser',
 function($scope,$rootScope,Task,errorparser){
 	$scope.newTask = {};
-	$scope.filterTasks = { done: 0 };
+	$scope.filterTasks = { done: false };
 	$scope.creationerrors = [];
 
 	$scope.create = function () {
@@ -34,12 +34,12 @@ function($scope,$rootScope,Task,errorparser){
 	};
 
 	$scope.toggleDone = function () {
-		this.task.done = this.task.done===1?0:1;
+		this.task.done = !this.task.done;
 		this.task.$save();
 	};
 
 	$scope.toggleDoneFilter = function () {
-		this.filterTasks.done = this.filterTasks.done===0?undefined:0;
+		this.filterTasks.done = this.filterTasks.done===false?undefined:false;
 	};
 
 	$rootScope.$watch('activeList', function(newValue, oldValue) {
