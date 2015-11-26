@@ -11,10 +11,19 @@
 |
 */
 
+Route::filter('cache.fetch', function ($route, $request) {
+	$key = $request->url();
+	if (Cache::has($key)) return Cache::get($key);
+});
+Route::filter('cache.put', function ($route, $request, $response) {
+	$key = $request->url();
+	if (!Cache::has($key)) Cache::put($key, $response->getContent(), 60);
+});
+
 
 Route::get('/', function () {
     return view('tasks');
-});
+})->before('cache.fetch')->after('cache.put');
 
 Route::group(['prefix' => 'api'], function () {
 	Route::get('/', function () {
