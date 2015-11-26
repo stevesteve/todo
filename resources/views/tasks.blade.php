@@ -8,7 +8,7 @@
 			<button type="submit">+</button>
 			<ul class="errorlist">
 				<li ng-repeat="error in creationerrors">
-					@{{ error }}
+					<span ng-bind="error"></span>
 				</li>
 			</ul>
 		</form>
@@ -16,7 +16,7 @@
 			<li ng-repeat="list in lists | orderBy:'name'" ng-click="setActiveList()"
 				ng-class="{active: activeList.id === list.id}">
 
-				@{{ list.name }}
+				<span ng-bind="list.name"></span>
 				<button ng-click="delete($event)" class="btn-delete">x</button>
 			</li>
 		</ul>
@@ -26,7 +26,7 @@
 			<input type="text" ng-model="newTask.name" placeholder="New Task">
 			<button type="submit">+</button>
 			<ul class="errorlist">
-				<li ng-repeat="error in creationerrors">@{{ error }}</li>
+				<li ng-repeat="error in creationerrors"><span ng-bind="error"></span></li>
 			</ul>
 		</form>
 		<label for="show-done" class="checkbox-label" ng-click="toggleDoneFilter()">
@@ -42,12 +42,12 @@
 					ng-if="!task.done" ng-click="toggleDone()">
 				<img src="{{ asset('media/checkbox-ticked.png') }}" class="checkbox ticked"
 					ng-if="task.done" ng-click="toggleDone()">
-				@{{ task.name }}
+				<span ng-bind="task.name"></span>
 				<span class="task-time" ng-if="task.done">
-					Done: @{{ task.updated_at }}
+					Done: <span ng-bind="task.updated_at"></span>
 				</span>
 				<span class="task-time" ng-if="!task.done">
-					Created: @{{ task.created_at }}
+					Created: <span ng-bind="task.created_at"></span>
 				</span>
 				<button ng-click="delete($event)" class="btn-delete">x</button>
 			</li>
