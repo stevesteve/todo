@@ -1,5 +1,5 @@
 # Simple Todo #
-A simple todo application I made to learn laravel. A live demostration can be found at https://apache.stefanlehmann.net/todo/
+A simple todo application I made to learn laravel. 
 
 ## Installation ##
 1. clone the git repository
